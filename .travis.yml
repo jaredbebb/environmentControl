@@ -2,7 +2,7 @@
 # Blacklist
 branches:
   except:
-- gh-pages
+    - gh-pages
 
 language: c
 sudo: false
