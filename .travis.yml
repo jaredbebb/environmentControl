@@ -1,4 +1,9 @@
 # from https://learn.adafruit.com/the-well-automated-arduino-library/travis-ci
+# Blacklist
+branches:
+  except:
+- gh-pages
+
 language: c
 sudo: false
 cache:
