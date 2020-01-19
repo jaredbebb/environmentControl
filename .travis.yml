@@ -1,3 +1,4 @@
+# from https://learn.adafruit.com/the-well-automated-arduino-library/travis-ci
 language: c
 sudo: false
 cache:
