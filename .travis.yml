@@ -1,25 +1,23 @@
-# Blacklist
+# Whitelist
 branches:
-  except:
-    - gh-pages
+  if: branch = master
 
 language: python
-python:
-- '2.7'
-sudo: false
-cache:
-  directories:
-  - ~/.platformio
+  python:
+    - '2.7'
+  sudo: false
+  cache:
+    directories:
+      - ~/.platformio
 env:
-- PLATFORMIO_CI_SRC=src/
+  - PLATFORMIO_CI_SRC=src/
 
 install:
-- pip install -U platformio
-- platformio lib install 567 562
+  - pip install -U platformio
+  - platformio lib install 567 562
 
 script:
-- platformio run -e nodemcuv2_deploy
-   - ls -R
+  - platformio run -e nodemcuv2_deploy
 
 deploy:
   on:
