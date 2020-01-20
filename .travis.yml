@@ -33,4 +33,4 @@ deploy:
   overwrite: true
   api_key:
     secure: $GH_REPO_TOKEN
-  file: ".pioenvs/mkrwifi1010/firmware.bin"
+  file: ".pio/build/mkrwifi1010/firmware.bin"
