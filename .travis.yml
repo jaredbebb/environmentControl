@@ -37,6 +37,7 @@ install:
 script:
    - python run-clang-format.py -r .
    - build_main_platforms
+   - ls -R
  
 # Generate and deploy documentation
 after_success:
