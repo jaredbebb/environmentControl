@@ -38,7 +38,15 @@ script:
    - python run-clang-format.py -r .
    - build_main_platforms
    - ls -R
- 
+
+deploy:
+  on:
+    tags: true
+  skip_cleanup: true
+  provider: releases
+  overwrite: true
+  file: "arduino_build_11/esp8266/control/control.ino.bin"
+
 # Generate and deploy documentation
 after_success:
   - source <(curl -SLs  https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/library_check.sh)
