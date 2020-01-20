@@ -1,7 +1,7 @@
-# Blacklist
+# Whitelist
 branches:
-  except:
-    - gh-pages
+  only:
+  - master
 
 language: python
 
@@ -21,7 +21,7 @@ install:
   - platformio lib install 567 562
 
 script:
-  - platformio run -e nodemcuv2_deploy
+  - platformio run -e nodemcu-32s
 
 deploy:
   on:
@@ -33,4 +33,4 @@ deploy:
   overwrite: true
   api_key:
     secure: $GH_REPO_TOKEN
-  file: ".pioenvs/nodemcuv2_deploy/firmware.bin"
+  file: ".pioenvs/nodemcu-32s/firmware.bin"
