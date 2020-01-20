@@ -1,6 +1,7 @@
-# Whitelist
+# Blacklist
 branches:
-  if: branch = master
+  except:
+    - gh-pages
 
 language: python
   python:
