@@ -21,7 +21,7 @@ install:
   - platformio lib install 567 562
 
 script:
-  - platformio run -e nodemcu-32s
+  - platformio run -e mkrwifi1010
 
 deploy:
   on:
@@ -33,4 +33,4 @@ deploy:
   overwrite: true
   api_key:
     secure: $GH_REPO_TOKEN
-  file: ".pioenvs/nodemcu-32s/firmware.bin"
+  file: ".pioenvs/mkrwifi1010/firmware.bin"
