@@ -40,8 +40,8 @@ script:
    - ls -R
 
 deploy:
-  on:
-    tags: true
+#  on:
+#    tags: true
   skip_cleanup: true
   provider: releases
   overwrite: true
