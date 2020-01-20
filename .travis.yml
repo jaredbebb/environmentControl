@@ -1,51 +1,23 @@
-# from https://learn.adafruit.com/the-well-automated-arduino-library/travis-ci
-# Blacklist
+# Whitelist
 branches:
-  except:
-    - gh-pages
+  if: branch = master
 
-language: c
-sudo: false
-cache:
-  directories:
-    - ~/arduino_ide
-    - ~/.arduino15/packages/
-git:
-  depth: false
-  quiet: true
-addons:
-  apt:
-    sources:
-      - llvm-toolchain-trusty-5.0
-      - key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-    packages:
-      - clang-format-5.0
+language: python
+  python:
+    - '2.7'
+  sudo: false
+  cache:
+    directories:
+      - ~/.platformio
 env:
-  global:
-#    - ARDUINO_IDE_VERSION="1.8.10"
-     - PRETTYNAME="Adafruit FT6206 Arduino Library"
-# Optional, will default to "$TRAVIS_BUILD_DIR/Doxyfile"
-#    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxyfile
- 
-before_install:
-   - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
-   - curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/run-clang-format.py > run-clang-format.py
- 
-install:
-   - arduino --install-library "Adafruit ILI9341","Adafruit GFX Library"
- 
-script:
-   - python run-clang-format.py -r .
-   - build_main_platforms
-   - ls -R
+  - PLATFORMIO_CI_SRC=src/
 
-# deploy:
-#  on:
-#    tags: true
-#  skip_cleanup: true
-#  provider: releases
-#  overwrite: true
-#  file: "arduino_build_11/esp8266/control/control.ino.bin"
+install:
+  - pip install -U platformio
+  - platformio lib install 567 562
+
+script:
+  - platformio run -e nodemcuv2_deploy
 
 deploy:
   on:
@@ -57,10 +29,4 @@ deploy:
   overwrite: true
   api_key:
     secure: $GH_REPO_TOKEN
-  file: "arduino_build_11/esp8266/control/control.ino.bin"
-
-
-# Generate and deploy documentation
-# after_success:
-#   - source <(curl -SLs  https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/library_check.sh)
-#   - source <(curl -SLs  https://raw.githubusercontent.com/jaredbebb/environmentControl/master/doxy_gen_and_deploy.sh)
+  file: ".pioenvs/nodemcuv2_deploy/firmware.bin"
